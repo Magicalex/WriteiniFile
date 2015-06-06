@@ -1,20 +1,22 @@
-# FileIni
+## WriteIniFile
 
 WriteIniFile php library for create, erase and update file ini.
 
-# Installation
+## Installation
 
-use composer for install this library
+Use composer for install this library.
 
 ```bash
-$ composer require magicalex/WriteIniFile
+$ composer require 'magicalex/writeinifile:dev-master'
 ```
 
-# Usage
+## Usage
 
 ```php
 <?php
-require 'vendor/autoload';
+require 'vendor/autoload.php';
+
+use WriteIniFile\WriteIniFile;
 
 $data = [
     "fruit" => ['orange' => '100g', 'fraise' => '10g'],
@@ -42,3 +44,9 @@ $c->update([
 ]);
 $c->write();
 ```
+
+## License
+
+The WriteIniFile php library is released under the GNU General Public License v3.0.
+
+https://github.com/Magicalex/WriteIniFile/blob/master/LICENSE.md

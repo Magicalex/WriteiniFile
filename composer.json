@@ -4,6 +4,7 @@
     "keywords": ["file", "ini", "write", "WriteIniFile"],
     "license": "GPL-3.0",
     "type": "library",
+    "homepage": "https://github.com/Magicalex/WriteIniFile",
     "authors": [
         {
             "name": "magicalex",
