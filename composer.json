@@ -1,0 +1,21 @@
+{
+    "name": "magicalex/writeinifile",
+    "description": "WriteIniFile php library for create, erase and update file ini",
+    "keywords": ["file", "ini", "write", "WriteIniFile"],
+    "license": "GPL-3.0",
+    "type": "library",
+    "authors": [
+        {
+            "name": "magicalex",
+            "email": "magicalex14000@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WriteIniFile\\": "WriteIniFile"
+        }
+    }
+}
