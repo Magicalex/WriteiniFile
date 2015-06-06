@@ -25,24 +25,30 @@ $data = [
     "dessert" => ['tarte' => true, 'pomme' => false, 'riz' => true, 'sushi' => false]
 ];
 
-// demo erase a file
+
+// demo create file ini
 $a = new WriteIniFile("test1.ini");
 $a->create($data);
 $a->write();
-$a->erase();
-$a->write(); // erase all the file
 
-// demo create file ini
 $b = new WriteIniFile("test2.ini");
 $b->create($data);
 $b->write();
 
-// demo update a value
-$c = new WriteIniFile("test2.ini");
-$c->update([
+
+// demo erase a file
+$c = new WriteIniFile("test1.ini");
+$c->erase();
+$c->write(); // erase all the file
+
+
+// demo update a file
+$d = new WriteIniFile("test2.ini");
+$d->update([
     "dessert" => ['sushi' => "j'adore les sushis!", 'riz' => false],
+    "fruit" => ['orange' => '200g']
 ]);
-$c->write();
+$d->write();
 ```
 
 ## License
