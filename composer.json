@@ -1,5 +1,5 @@
 {
-    "name": "magicalex/writeinifile",
+    "name": "magicalex/write-ini-file",
     "description": "WriteIniFile php library for create, erase and update file ini",
     "keywords": ["file", "ini", "write", "WriteIniFile"],
     "license": "GPL-3.0",
