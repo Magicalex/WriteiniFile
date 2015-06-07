@@ -24,9 +24,13 @@ class WriteIniFile
         $this->path_to_file_ini = $file_ini;
 
         if (file_exists($file_ini) === true) {
-            $this->data_file_ini = parse_ini_file($file_ini, true);
+            $this->data_file_ini = @parse_ini_file($file_ini, true);
         } else {
             $this->data_file_ini = [];
+        }
+
+        if (false === $this->data_file_ini) {
+            throw new \Exception("unable to parse file ini : $this->path_to_file_ini");
         }
     }
 
@@ -68,27 +72,38 @@ class WriteIniFile
     {
         $data_array = $this->data_file_ini;
         $file_content = null;
-        $error = null;
 
         foreach ($data_array as $key => $groupe_n) {
             $file_content .= "\n[" . $key . "]\n";
             foreach ($groupe_n as $key => $value_n) {
-                if ($value_n == '1' || $value_n === 1) {
-                    $value_n = 'yes';
-                } elseif (empty($value_n)) {
-                    $value_n = 'no';
-                } else {
-                    $value_n = '"' . $value_n . '"';
-                }
-                $file_content .= $key . " = " . $value_n . "\n";
+                $file_content .= $key . ' = ' . $this->encode($value_n) . "\n";
             }
         }
 
         $result = @file_put_contents($this->path_to_file_ini, $file_content);
-        if ($result === false) {
-            throw new \Exception("An error occured when writing in the file ini : $this->path_to_file_ini");
+        if (false === $result) {
+            throw new \Exception("unable to write in the file ini : $this->path_to_file_ini");
         }
 
         return ($result !== false) ? true : false;
+    }
+
+    /**
+     * method for encode type for file ini
+     *
+     * @param mixed $value
+     * @return string
+     */
+    private function encode($value)
+    {
+        if ($value == '1') {
+            return 'yes';
+        }
+
+        if ($value == '') {
+            return 'no';
+        }
+
+        return '"' . $value . '"';
     }
 }
