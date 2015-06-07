@@ -1,61 +1,69 @@
 <?php
 namespace WriteIniFile;
 
+/**
+ * Class WriteIniFile
+ *
+ */
 class WriteIniFile
 {
     /**
-    * @var string $path_to_file_ini
-    * @var array $data_file_ini
-    */
+     * @var string $path_to_file_ini
+     * @var array $data_file_ini
+     */
     protected $path_to_file_ini,
               $data_file_ini;
 
     /**
-    * @param string $file_ini
-    */
+     * Constructor.
+     *
+     * @param string $file_ini
+     */
     public function __construct($file_ini)
     {
         $this->path_to_file_ini = $file_ini;
 
         if (file_exists($file_ini) === true) {
             $this->data_file_ini = parse_ini_file($file_ini, true);
+        } else {
+            $this->data_file_ini = [];
         }
     }
 
     /**
-    * method for change value in the file ini.
-    *
-    * @param array $new_value
-    */
+     * method for change value in the file ini.
+     *
+     * @param array $new_value
+     */
     public function update(array $new_value)
     {
         $this->data_file_ini = array_replace_recursive($this->data_file_ini, $new_value);
     }
 
     /**
-    * create file ini.
-    *
-    * @param array $new_file_ini
-    */
+     * method for create file ini.
+     *
+     * @param array $new_file_ini
+     */
     public function create(array $new_file_ini)
     {
-        file_put_contents($this->path_to_file_ini, '');
         $this->data_file_ini = $new_file_ini;
     }
 
     /**
-    * erase file ini.
-    */
+     * method for erase file ini.
+     *
+     */
     public function erase()
     {
         $this->data_file_ini = [];
     }
 
     /**
-    * write in the file ini.
-    *
-    * @return string
-    */
+     * method for write data in the file ini.
+     *
+     * @return bool true for a succes
+     */
     public function write()
     {
         $data_array = $this->data_file_ini;
@@ -76,10 +84,9 @@ class WriteIniFile
             }
         }
 
-        if (false === @file_put_contents($this->path_to_file_ini, $file_content)) {
-            $error = 'An error occured when writing in the file ini : ' . $this->path_to_file;
-        }
+        $result = file_put_contents($this->path_to_file_ini, $file_content);
+        throw new \Exception("An error occured when writing in the file ini : $this->path_to_file_ini");
 
-        return $error;
+        return ($result !== false) ? true : false;
     }
 }

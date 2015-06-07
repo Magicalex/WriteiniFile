@@ -16,7 +16,7 @@ $ composer require 'magicalex/write-ini-file:dev-master'
 <?php
 require 'vendor/autoload.php';
 
-use WriteIniFile\WriteIniFile;
+use \WriteIniFile\WriteIniFile;
 
 $data = [
     "fruit" => ['orange' => '100g', 'fraise' => '10g'],
