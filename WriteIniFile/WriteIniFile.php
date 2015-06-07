@@ -64,6 +64,16 @@ class WriteIniFile
     }
 
     /**
+     * method for add new value in the file ini.
+     *
+     * @param array $add_new_value
+     */
+     public function add(array $add_new_value)
+     {
+         $this->data_file_ini = array_merge_recursive($this->data_file_ini, $add_new_value);
+     }
+
+    /**
      * method for write data in the file ini.
      *
      * @return bool true for a succes
@@ -99,11 +109,9 @@ class WriteIniFile
         if ($value == '1') {
             return 'yes';
         }
-
         if ($value == '') {
             return 'no';
         }
-
         return '"' . $value . '"';
     }
 }
