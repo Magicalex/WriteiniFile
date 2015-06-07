@@ -71,7 +71,7 @@ class WriteIniFile
         $error = null;
 
         foreach ($data_array as $key => $groupe_n) {
-            $file_content .= "[" . $key . "]\n";
+            $file_content .= "\n[" . $key . "]\n";
             foreach ($groupe_n as $key => $value_n) {
                 if ($value_n == '1' || $value_n === 1) {
                     $value_n = 'yes';
@@ -84,8 +84,10 @@ class WriteIniFile
             }
         }
 
-        $result = file_put_contents($this->path_to_file_ini, $file_content);
-        throw new \Exception("An error occured when writing in the file ini : $this->path_to_file_ini");
+        $result = @file_put_contents($this->path_to_file_ini, $file_content);
+        if ($result === false) {
+            throw new \Exception("An error occured when writing in the file ini : $this->path_to_file_ini");
+        }
 
         return ($result !== false) ? true : false;
     }
