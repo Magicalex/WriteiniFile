@@ -133,7 +133,8 @@ class WriteIniFile
      * @param array $array2
      * @return array
      */
-    private static function arrayDiffRecursive(array $array1, array $array2) {
+    private static function arrayDiffRecursive(array $array1, array $array2)
+    {
         $finalArray = [];
         foreach ($array1 as $mKey => $mValue) {
             if (array_key_exists($mKey, $array2)) {
