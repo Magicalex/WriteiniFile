@@ -73,6 +73,16 @@ class WriteIniFile
          $this->data_file_ini = array_merge_recursive($this->data_file_ini, $add_new_value);
      }
 
+     /**
+     * method for remove some values in the file ini.
+     *
+     * @param array $add_new_value
+     */
+     public function rm(array $rm_value)
+     {
+         $this->data_file_ini = self::arrayDiffRecursive($this->data_file_ini, $rm_value);
+     }
+
     /**
      * method for write data in the file ini.
      *
@@ -86,7 +96,7 @@ class WriteIniFile
         foreach ($data_array as $key => $groupe_n) {
             $file_content .= "\n[" . $key . "]\n";
             foreach ($groupe_n as $key => $value_n) {
-                $file_content .= $key . ' = ' . $this->encode($value_n) . "\n";
+                $file_content .= $key . ' = ' . self::encode($value_n) . "\n";
             }
         }
 
@@ -104,7 +114,7 @@ class WriteIniFile
      * @param mixed $value
      * @return string
      */
-    private function encode($value)
+    private static function encode($value)
     {
         if ($value == '1') {
             return 'yes';
@@ -113,5 +123,34 @@ class WriteIniFile
             return 'no';
         }
         return '"' . $value . '"';
+    }
+
+    /**
+     * Computes the difference of 2 arrays recursively
+     * source : http://php.net/manual/en/function.array-diff.php#91756
+     *
+     * @param array $array1
+     * @param array $array2
+     * @return array
+     */
+    private static function arrayDiffRecursive(array $array1, array $array2) {
+        $finalArray = [];
+        foreach ($array1 as $mKey => $mValue) {
+            if (array_key_exists($mKey, $array2)) {
+                if (is_array($mValue)) {
+                    $arrayDiffRecursive = self::arrayDiffRecursive($mValue, $array2[$mKey]);
+                    if (count($arrayDiffRecursive)) {
+                        $finalArray[$mKey] = $arrayDiffRecursive;
+                    }
+                } else {
+                    if ($mValue != $array2[$mKey]) {
+                        $finalArray[$mKey] = $mValue;
+                    }
+                }
+            } else {
+                $finalArray[$mKey] = $mValue;
+            }
+        }
+        return $finalArray;
     }
 }

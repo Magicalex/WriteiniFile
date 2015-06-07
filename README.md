@@ -27,37 +27,129 @@ $data = [
 ];
 
 // demo create file ini
-$a = new WriteIniFile('test1.ini');
+$a = new WriteIniFile('file1.ini');
 $a->create($data);
 $a->write();
 
-$b = new WriteIniFile('test2.ini');
+$b = new WriteIniFile('file2.ini');
 $b->create($data);
 $b->write();
 
+$c = new WriteIniFile('file3.ini');
+$c->create($data);
+$c->write();
 
-// demo erase integrally the file
-$c = new WriteIniFile('test1.ini');
-$c->erase();
+$c = new WriteIniFile('file4.ini');
+$c->create($data);
 $c->write();
 
 
-// demo update a file
-$d = new WriteIniFile('test2.ini');
-$d->update([
-    'dessert' => ['sushi' => "j'adore les sushis!", 'riz' => false],
-    'fruit' => ['orange' => '200g']
-]);
+// demo erase integrally the file
+$d = new WriteIniFile('file1.ini');
+$d->erase();
 $d->write();
 
 
-// demo add a new value in the file ini
-$e = new WriteIniFile('test2.ini');
-$e->add([
-    'user_admin' => ['alexande' => true, 'paul' => false],
-    'fruit' => ['citron' => '100g']
+// demo update a file
+$e = new WriteIniFile('file2.ini');
+$e->update([
+    'dessert' => ['sushi' => "j'adore les sushis!", 'riz' => false],
+    'fruit' => ['orange' => '200g']
 ]);
 $e->write();
+
+
+// demo add a new values in the file ini
+$f = new WriteIniFile('file3.ini');
+$f->add([
+    'user_admin' => ['alexandre' => true, 'paul' => false],
+    'fruit' => ['citron' => '100g']
+]);
+$f->write();
+
+
+// demo remove some values in the file ini
+$g = new WriteIniFile('file4.ini');
+$g->rm([
+    'fruit' => ['orange' => '100g'],
+    'legume' => ['haricot' => '20g', 'oignon' => '100g'],
+    'jus' => ['orange' => '1L', 'pomme' => '1,5L', 'pamplemousse' => '0,5L'],
+    'dessert' => ['tarte' => true, 'pomme' => false, 'riz' => true, 'sushi' => false],
+    'type' => ['type_true' => true, 'type_false' => false]
+]);
+$g->write();
+```
+
+### output file
+
+```bash
+$ cat file1.ini
+# empty
+```
+
+```bash
+$ cat file2.ini
+
+[fruit]
+orange = "200g"
+fraise = "10g"
+
+[legume]
+haricot = "20g"
+oignon = "100g"
+
+[jus]
+orange = "1L"
+pomme = "1,5L"
+pamplemousse = "0,5L"
+
+[dessert]
+tarte = yes
+pomme = no
+riz = no
+sushi = "j'adore les sushis!"
+
+[type]
+type_true = yes
+type_false = no
+```
+
+```bash
+$ cat file3.ini
+
+[fruit]
+orange = "100g"
+fraise = "10g"
+citron = "100g"
+
+[legume]
+haricot = "20g"
+oignon = "100g"
+
+[jus]
+orange = "1L"
+pomme = "1,5L"
+pamplemousse = "0,5L"
+
+[dessert]
+tarte = yes
+pomme = no
+riz = yes
+sushi = no
+
+[type]
+type_true = yes
+type_false = no
+
+[user_admin]
+alexande = yes
+paul = no
+```
+```bash
+$ cat file4.ini
+
+[fruit]
+fraise = "10g"
 ```
 
 ## License
