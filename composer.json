@@ -1,7 +1,7 @@
 {
     "name": "magicalex/write-ini-file",
     "description": "WriteIniFile php library for create, erase and update file ini",
-    "keywords": ["file", "ini", "write", "WriteIniFile"],
+    "keywords": ["file", "ini", "write", "write_ini_file"],
     "license": "GPL-3.0",
     "type": "library",
     "homepage": "https://github.com/Magicalex/WriteIniFile",
