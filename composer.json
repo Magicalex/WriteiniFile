@@ -18,5 +18,8 @@
         "psr-4": {
             "WriteIniFile\\": "WriteIniFile"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.7.*"
     }
 }

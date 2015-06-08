@@ -21,7 +21,7 @@ class WriteIniFile
      */
     public function __construct($file_ini)
     {
-        $this->path_to_file_ini = realpath($file_ini);
+        $this->path_to_file_ini = $file_ini;
 
         if (file_exists($file_ini) === true) {
             $this->data_file_ini = @parse_ini_file($file_ini, true);
@@ -30,7 +30,7 @@ class WriteIniFile
         }
 
         if (false === $this->data_file_ini) {
-            throw new \Exception("Unable to parse file ini : $this->path_to_file_ini");
+            throw new \Exception(sprintf('Unable to parse file ini : %s', $this->path_to_file_ini));
         }
     }
 
