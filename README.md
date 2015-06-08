@@ -2,6 +2,12 @@
 
 Write-ini-file php library for create, remove, erase, add, and update file ini.
 
+[![Build Status](https://travis-ci.org/Magicalex/WriteIniFile.svg?branch=master)](https://travis-ci.org/Magicalex/WriteIniFile)
+[![Latest Stable Version](https://poser.pugx.org/magicalex/write-ini-file/v/stable)](https://packagist.org/packages/magicalex/write-ini-file)
+[![Total Downloads](https://poser.pugx.org/magicalex/write-ini-file/downloads)](https://packagist.org/packages/magicalex/write-ini-file)
+[![Latest Unstable Version](https://poser.pugx.org/magicalex/write-ini-file/v/unstable)](https://packagist.org/packages/magicalex/write-ini-file)
+ [![License](https://poser.pugx.org/magicalex/write-ini-file/license)](https://packagist.org/packages/magicalex/write-ini-file)
+
 ## Installation
 
 Use composer for install this library.
