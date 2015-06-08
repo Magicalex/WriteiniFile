@@ -2,3 +2,10 @@ vendor
 composer.lock
 
 index.php
+
+# test file ini
+tests/file_ini/testCreate2.ini
+tests/file_ini/testUpdate2.ini
+tests/file_ini/testErase2.ini
+tests/file_ini/testAdd2.ini
+tests/file_ini/testRm2.ini
