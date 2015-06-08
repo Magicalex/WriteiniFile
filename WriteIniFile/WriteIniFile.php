@@ -21,7 +21,7 @@ class WriteIniFile
      */
     public function __construct($file_ini)
     {
-        $this->path_to_file_ini = $file_ini;
+        $this->path_to_file_ini = realpath($file_ini);
 
         if (file_exists($file_ini) === true) {
             $this->data_file_ini = @parse_ini_file($file_ini, true);
@@ -30,7 +30,7 @@ class WriteIniFile
         }
 
         if (false === $this->data_file_ini) {
-            throw new \Exception("unable to parse file ini : $this->path_to_file_ini");
+            throw new \Exception("Unable to parse file ini : $this->path_to_file_ini");
         }
     }
 
@@ -92,19 +92,23 @@ class WriteIniFile
     {
         $data_array = $this->data_file_ini;
         $file_content = null;
-
-        foreach ($data_array as $key => $groupe_n) {
-            $file_content .= "\n[" . $key . "]\n";
-            foreach ($groupe_n as $key => $value_n) {
-                $file_content .= $key . ' = ' . self::encode($value_n) . "\n";
+        foreach ($data_array as $key_1 => $groupe) {
+            $file_content .= "\n[" . $key_1 . "]\n";
+            foreach ($groupe as $key_2 => $value_2) {
+                if (is_array($value_2)) {
+                    foreach ($value_2 as $key_3 => $value_3) {
+                        $file_content .= $key_2 . '[' . $key_3 . '] = ' . self::encode($value_3) . "\n";
+                    }
+                } else {
+                    $file_content .= $key_2 . ' = ' . self::encode($value_2) . "\n";
+                }
             }
         }
-
+        $file_content = preg_replace('#^\n#', '', $file_content);
         $result = @file_put_contents($this->path_to_file_ini, $file_content);
         if (false === $result) {
-            throw new \Exception("unable to write in the file ini : $this->path_to_file_ini");
+            throw new \Exception(sprintf('Unable to write in the file ini : %s', $this->path_to_file_ini));
         }
-
         return ($result !== false) ? true : false;
     }
 
@@ -116,11 +120,20 @@ class WriteIniFile
      */
     private static function encode($value)
     {
-        if ($value == '1') {
+        if ($value == '1' || $value === true) {
             return 'yes';
         }
-        if ($value == '') {
+        if ($value == '' || $value == '0' || $value === false) {
             return 'no';
+        }
+        if (is_numeric($value)) {
+            $value = $value * 1;
+            if (is_int($value)) {
+                return (int) $value;
+            }
+            if (is_float($value)) {
+                return (float) $value;
+            }
         }
         return '"' . $value . '"';
     }
