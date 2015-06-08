@@ -1,6 +1,6 @@
 ## WriteIniFile
 
-WriteIniFile php library for create, erase and update file ini.
+Write-ini-file php library for create, remove, erase, add, and update file ini.
 
 ## Installation
 
@@ -150,6 +150,14 @@ $ cat file4.ini
 
 [fruit]
 fraise = "10g"
+```
+
+## Contributing
+
+To run the unit tests:
+
+```bash
+$ phpunit
 ```
 
 ## License

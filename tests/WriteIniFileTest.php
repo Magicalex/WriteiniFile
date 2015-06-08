@@ -1,5 +1,5 @@
 <?php
-require 'WriteIniFile/WriteIniFile.php';
+
 use \WriteIniFile\WriteIniFile;
 
 class WriteIniFileTest extends \PHPUnit_Framework_TestCase
