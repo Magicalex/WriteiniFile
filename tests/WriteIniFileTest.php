@@ -59,13 +59,44 @@ class WriteIniFileTest extends \PHPUnit_Framework_TestCase
 
     public function testRm()
     {
+        $actual = 'tests/file_ini/testRm2.ini';
+        $expected = 'tests/file_ini/testRm1.ini';
+        $b = new WriteIniFile($actual);
+        $b->create($this->var);
+        $b->write();
+        $b->rm([
+            'section 1' => ['foo' => 'string', 'int' => 10]
+        ]);
+        $b->write();
+
+        $this->assertFileEquals($expected, $actual);
     }
 
     public function testErase()
     {
+        $actual = 'tests/file_ini/testErase2.ini';
+        $expected = 'tests/file_ini/testErase1.ini';
+        $b = new WriteIniFile($actual);
+        $b->create($this->var);
+        $b->write();
+        $b->erase();
+        $b->write();
+
+        $this->assertFileEquals($expected, $actual);
     }
 
     public function testAdd()
     {
+        $actual = 'tests/file_ini/testAdd2.ini';
+        $expected = 'tests/file_ini/testAdd1.ini';
+        $b = new WriteIniFile($actual);
+        $b->create($this->var);
+        $b->write();
+        $b->add([
+            'section 3' => ['foo' => 'bar', 'var_float' => 10.5]
+        ]);
+        $b->write();
+
+        $this->assertFileEquals($expected, $actual);
     }
 }
