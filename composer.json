@@ -1,6 +1,6 @@
 {
     "name": "magicalex/write-ini-file",
-    "description": "Write-ini-file php library for create, remove, erase, add, and update file ini",
+    "description": "Write-ini-file php library for create, remove, erase, add, and update ini file",
     "keywords": ["file", "ini", "write", "write_ini_file"],
     "license": "GPL-3.0",
     "type": "library",
@@ -20,6 +20,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "4.7.*"
+        "phpunit/phpunit": "4.7.*",
+        "satooshi/php-coveralls": "0.6.*"
     }
 }

@@ -35,7 +35,7 @@ class WriteIniFile
     }
 
     /**
-     * method for change value in the file ini.
+     * method for change value in the ini file.
      *
      * @param array $new_value
      */
@@ -45,7 +45,7 @@ class WriteIniFile
     }
 
     /**
-     * method for create file ini.
+     * method for create ini file.
      *
      * @param array $new_file_ini
      */
@@ -55,7 +55,7 @@ class WriteIniFile
     }
 
     /**
-     * method for erase file ini.
+     * method for erase ini file.
      *
      */
     public function erase()
@@ -64,7 +64,7 @@ class WriteIniFile
     }
 
     /**
-     * method for add new value in the file ini.
+     * method for add new value in the ini file.
      *
      * @param array $add_new_value
      */
@@ -74,7 +74,7 @@ class WriteIniFile
      }
 
      /**
-     * method for remove some values in the file ini.
+     * method for remove some values in the ini file.
      *
      * @param array $add_new_value
      */
@@ -84,7 +84,7 @@ class WriteIniFile
      }
 
     /**
-     * method for write data in the file ini.
+     * method for write data in the ini file.
      *
      * @return bool true for a succes
      */
@@ -113,7 +113,7 @@ class WriteIniFile
     }
 
     /**
-     * method for encode type for file ini
+     * method for encode type for ini file.
      *
      * @param mixed $value
      * @return string
