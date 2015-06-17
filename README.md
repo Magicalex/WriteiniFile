@@ -1,8 +1,9 @@
 ## WriteIniFile
 
-Write-ini-file php library for create, remove, erase, add, and update file ini.
+Write-ini-file php library for create, remove, erase, add, and update ini file.
 
 [![Build Status](https://travis-ci.org/Magicalex/WriteIniFile.svg?branch=master)](https://travis-ci.org/Magicalex/WriteIniFile)
+[![Coverage Status](https://coveralls.io/repos/Magicalex/WriteIniFile/badge.svg?branch=master)](https://coveralls.io/r/Magicalex/WriteIniFile?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/magicalex/write-ini-file/v/stable)](https://packagist.org/packages/magicalex/write-ini-file)
 [![Total Downloads](https://poser.pugx.org/magicalex/write-ini-file/downloads)](https://packagist.org/packages/magicalex/write-ini-file)
 [![Latest Unstable Version](https://poser.pugx.org/magicalex/write-ini-file/v/unstable)](https://packagist.org/packages/magicalex/write-ini-file)
@@ -22,148 +23,64 @@ $ composer require magicalex/write-ini-file
 <?php
 require 'vendor/autoload.php';
 
-use \WriteIniFile\WriteIniFile;
+use WriteIniFile\WriteIniFile;
 
 $data = [
     'fruit' => ['orange' => '100g', 'fraise' => '10g'],
     'legume' => ['haricot' => '20g', 'oignon' => '100g'],
     'jus' => ['orange' => '1L', 'pomme' => '1,5L', 'pamplemousse' => '0,5L'],
-    'dessert' => ['tarte' => true, 'pomme' => false, 'riz' => true, 'sushi' => false],
-    'type' => ['type_true' => true, 'type_false' => false]
 ];
 
-// demo create file ini
+// demo create ini file
 $a = new WriteIniFile('file1.ini');
 $a->create($data);
 $a->write();
 
+// create another ini file
 $b = new WriteIniFile('file2.ini');
 $b->create($data);
 $b->write();
 
-$c = new WriteIniFile('file3.ini');
-$c->create($data);
-$c->write();
-
-$c = new WriteIniFile('file4.ini');
-$c->create($data);
-$c->write();
-
-
-// demo erase integrally the file
-$d = new WriteIniFile('file1.ini');
-$d->erase();
-$d->write();
-
-
 // demo update a file
-$e = new WriteIniFile('file2.ini');
-$e->update([
-    'dessert' => ['sushi' => "j'adore les sushis!", 'riz' => false],
+$c = new WriteIniFile('file1.ini');
+$c->update([
     'fruit' => ['orange' => '200g']
 ]);
-$e->write();
+$c->write();
 
-
-// demo add a new values in the file ini
-$f = new WriteIniFile('file3.ini');
-$f->add([
-    'user_admin' => ['alexandre' => true, 'paul' => false],
-    'fruit' => ['citron' => '100g']
-]);
-$f->write();
-
-
-// demo remove some values in the file ini
-$g = new WriteIniFile('file4.ini');
-$g->rm([
+// demo remove some values in the ini file
+$d = new WriteIniFile('file2.ini');
+$d->rm([
     'fruit' => ['orange' => '100g'],
-    'legume' => ['haricot' => '20g', 'oignon' => '100g'],
-    'jus' => ['orange' => '1L', 'pomme' => '1,5L', 'pamplemousse' => '0,5L'],
-    'dessert' => ['tarte' => true, 'pomme' => false, 'riz' => true, 'sushi' => false],
-    'type' => ['type_true' => true, 'type_false' => false]
+    'legume' => ['haricot' => '20g'],
+    'jus' => ['orange' => '1L']
 ]);
-$g->write();
+$d->write();
 ```
 
 ### output file
 
-```bash
-$ cat file1.ini
-# empty
-```
+ex : file2.ini
 
 ```bash
-$ cat file2.ini
-
 [fruit]
-orange = "200g"
 fraise = "10g"
 
 [legume]
-haricot = "20g"
 oignon = "100g"
 
 [jus]
-orange = "1L"
 pomme = "1,5L"
 pamplemousse = "0,5L"
-
-[dessert]
-tarte = yes
-pomme = no
-riz = no
-sushi = "j'adore les sushis!"
-
-[type]
-type_true = yes
-type_false = no
 ```
 
-```bash
-$ cat file3.ini
-
-[fruit]
-orange = "100g"
-fraise = "10g"
-citron = "100g"
-
-[legume]
-haricot = "20g"
-oignon = "100g"
-
-[jus]
-orange = "1L"
-pomme = "1,5L"
-pamplemousse = "0,5L"
-
-[dessert]
-tarte = yes
-pomme = no
-riz = yes
-sushi = no
-
-[type]
-type_true = yes
-type_false = no
-
-[user_admin]
-alexande = yes
-paul = no
-```
-```bash
-$ cat file4.ini
-
-[fruit]
-fraise = "10g"
-```
 
 ## Contributing
 
 To run the unit tests:
 
 ```bash
-$ phpunit
+$ php vendor/bin/phpunit
 ```
 
 ## License
