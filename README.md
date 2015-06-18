@@ -23,7 +23,7 @@ $ composer require magicalex/write-ini-file
 <?php
 require 'vendor/autoload.php';
 
-use WriteIniFile\WriteIniFile;
+use \WriteIniFile\WriteIniFile;
 
 $data = [
     'fruit' => ['orange' => '100g', 'fraise' => '10g'],
@@ -62,7 +62,7 @@ $d->write();
 
 ex : file2.ini
 
-```bash
+```ini
 [fruit]
 fraise = "10g"
 
