@@ -1,8 +1,8 @@
 <?php
 
-use \WriteIniFile\WriteIniFile;
+use \WriteiniFile\WriteiniFile;
 
-class WriteIniFileTest extends \PHPUnit_Framework_TestCase
+class WriteiniFileTest extends \PHPUnit_Framework_TestCase
 {
     private $var = [
         'section 1' => [
@@ -34,7 +34,7 @@ class WriteIniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testCreate2.ini';
         $expected = 'tests/file_ini/testCreate1.ini';
-        $a = new WriteIniFile($actual);
+        $a = new WriteiniFile($actual);
         $a->create($this->var);
         $a->write();
 
@@ -45,7 +45,7 @@ class WriteIniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testUpdate2.ini';
         $expected = 'tests/file_ini/testUpdate1.ini';
-        $b = new WriteIniFile($actual);
+        $b = new WriteiniFile($actual);
         $b->create($this->var);
         $b->write();
         $b->update([
@@ -61,7 +61,7 @@ class WriteIniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testRm2.ini';
         $expected = 'tests/file_ini/testRm1.ini';
-        $b = new WriteIniFile($actual);
+        $b = new WriteiniFile($actual);
         $b->create($this->var);
         $b->write();
         $b->rm([
@@ -76,7 +76,7 @@ class WriteIniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testErase2.ini';
         $expected = 'tests/file_ini/testErase1.ini';
-        $b = new WriteIniFile($actual);
+        $b = new WriteiniFile($actual);
         $b->create($this->var);
         $b->write();
         $b->erase();
@@ -89,7 +89,7 @@ class WriteIniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testAdd2.ini';
         $expected = 'tests/file_ini/testAdd1.ini';
-        $b = new WriteIniFile($actual);
+        $b = new WriteiniFile($actual);
         $b->create($this->var);
         $b->write();
         $b->add([

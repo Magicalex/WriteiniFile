@@ -1,11 +1,11 @@
 <?php
-namespace WriteIniFile;
+namespace WriteiniFile;
 
 /**
- * Class WriteIniFile
+ * Class WriteiniFile
  *
  */
-class WriteIniFile
+class WriteiniFile
 {
     /**
      * @var string $path_to_ini_file

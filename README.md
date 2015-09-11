@@ -1,4 +1,4 @@
-## WriteIniFile
+## WriteiniFile
 
 Write-ini-file php library for create, remove, erase, add, and update ini file.
 
@@ -23,7 +23,7 @@ $ composer require magicalex/write-ini-file
 <?php
 require 'vendor/autoload.php';
 
-use \WriteIniFile\WriteIniFile;
+use \WriteiniFile\WriteiniFile;
 
 $data = [
     'fruit' => ['orange' => '100g', 'fraise' => '10g'],
@@ -32,24 +32,24 @@ $data = [
 ];
 
 // demo create ini file
-$a = new WriteIniFile('file1.ini');
+$a = new WriteiniFile('file1.ini');
 $a->create($data);
 $a->write();
 
 // create another ini file
-$b = new WriteIniFile('file2.ini');
+$b = new WriteiniFile('file2.ini');
 $b->create($data);
 $b->write();
 
 // demo update a file
-$c = new WriteIniFile('file1.ini');
+$c = new WriteiniFile('file1.ini');
 $c->update([
     'fruit' => ['orange' => '200g']
 ]);
 $c->write();
 
 // demo remove some values in the ini file
-$d = new WriteIniFile('file2.ini');
+$d = new WriteiniFile('file2.ini');
 $d->rm([
     'fruit' => ['orange' => '100g'],
     'legume' => ['haricot' => '20g'],
@@ -85,6 +85,6 @@ $ php vendor/bin/phpunit
 
 ## License
 
-The WriteIniFile php library is released under the GNU General Public License v3.0.
+The WriteiniFile php library is released under the GNU General Public License v3.0.
 
-https://github.com/Magicalex/WriteIniFile/blob/master/LICENSE.md
+https://github.com/Magicalex/WriteiniFile/blob/master/LICENSE.md
