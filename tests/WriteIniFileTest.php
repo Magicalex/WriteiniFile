@@ -34,9 +34,9 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testCreate2.ini';
         $expected = 'tests/file_ini/testCreate1.ini';
-        $a = new WriteiniFile($actual);
-        $a->create($this->var);
-        $a->write();
+        $object = new WriteiniFile($actual);
+        $object->create($this->var);
+        $object->write();
 
         $this->assertFileEquals($expected, $actual);
     }
@@ -45,13 +45,14 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testUpdate2.ini';
         $expected = 'tests/file_ini/testUpdate1.ini';
-        $b = new WriteiniFile($actual);
-        $b->create($this->var);
-        $b->write();
-        $b->update([
+
+        $object = new WriteiniFile($actual);
+        $object->create($this->var);
+        $object->write();
+        $object->update([
             'section 1' => ['foo' => 'bar', 'int' => 100]
         ]);
-        $b->write();
+        $object->write();
 
         $this->assertFileEquals($expected, $actual);
     }
@@ -61,13 +62,14 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testRm2.ini';
         $expected = 'tests/file_ini/testRm1.ini';
-        $b = new WriteiniFile($actual);
-        $b->create($this->var);
-        $b->write();
-        $b->rm([
+
+        $object = new WriteiniFile($actual);
+        $object->create($this->var);
+        $object->write();
+        $object->rm([
             'section 1' => ['foo' => 'string', 'int' => 10]
         ]);
-        $b->write();
+        $object->write();
 
         $this->assertFileEquals($expected, $actual);
     }
@@ -76,11 +78,12 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testErase2.ini';
         $expected = 'tests/file_ini/testErase1.ini';
-        $b = new WriteiniFile($actual);
-        $b->create($this->var);
-        $b->write();
-        $b->erase();
-        $b->write();
+
+        $object = new WriteiniFile($actual);
+        $object->create($this->var);
+        $object->write();
+        $object->erase();
+        $object->write();
 
         $this->assertFileEquals($expected, $actual);
     }
@@ -89,14 +92,24 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
     {
         $actual = 'tests/file_ini/testAdd2.ini';
         $expected = 'tests/file_ini/testAdd1.ini';
-        $b = new WriteiniFile($actual);
-        $b->create($this->var);
-        $b->write();
-        $b->add([
+
+        $object = new WriteiniFile($actual);
+        $object->create($this->var);
+        $object->write();
+        $object->add([
             'section 3' => ['foo' => 'bar', 'var_float' => 10.5]
         ]);
-        $b->write();
+        $object->write();
 
         $this->assertFileEquals($expected, $actual);
     }
+
+    public function testWithFiledoesnotExist()
+    {
+        $actual = 'tests/file_ini/donotExist.ini';
+        $object = new WriteiniFile($actual);
+
+        $this->assertFileNotExists($actual);
+    }
+
 }

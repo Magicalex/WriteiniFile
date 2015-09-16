@@ -130,11 +130,10 @@ class WriteiniFile
             $value = $value * 1;
             if (is_int($value)) {
                 return (int) $value;
-            }
-            if (is_float($value)) {
+            } elseif (is_float($value)) {
                 return (float) $value;
             }
-        }
+        } // @codeCoverageIgnore
         return '"' . $value . '"';
     }
 
@@ -149,20 +148,16 @@ class WriteiniFile
     private static function arrayDiffRecursive(array $array1, array $array2)
     {
         $finalArray = [];
-        foreach ($array1 as $mKey => $mValue) {
-            if (array_key_exists($mKey, $array2)) {
-                if (is_array($mValue)) {
-                    $arrayDiffRecursive = self::arrayDiffRecursive($mValue, $array2[$mKey]);
+        foreach ($array1 as $KeyArray1 => $ValueArray1) {
+            if (array_key_exists($KeyArray1, $array2)) {
+                if (is_array($ValueArray1)) {
+                    $arrayDiffRecursive = self::arrayDiffRecursive($ValueArray1, $array2[$KeyArray1]);
                     if (count($arrayDiffRecursive)) {
-                        $finalArray[$mKey] = $arrayDiffRecursive;
-                    }
-                } else {
-                    if ($mValue != $array2[$mKey]) {
-                        $finalArray[$mKey] = $mValue;
+                        $finalArray[$KeyArray1] = $arrayDiffRecursive;
                     }
                 }
             } else {
-                $finalArray[$mKey] = $mValue;
+                $finalArray[$KeyArray1] = $ValueArray1;
             }
         }
         return $finalArray;
