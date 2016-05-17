@@ -134,7 +134,7 @@ class WriteiniFile
             } elseif (is_float($value)) {
                 return (float) $value;
             }
-        } // @codeCoverageIgnore
+        }
         return '"'.$value.'"';
     }
 

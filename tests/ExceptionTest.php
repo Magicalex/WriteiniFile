@@ -4,46 +4,37 @@ use \WriteiniFile\WriteiniFile;
 
 class ExceptionTest extends \PHPUnit_Framework_TestCase
 {
-    private $var = [
-        'section 1' => [
-            'foo'        => 'string',
-            'bool_true'  => true,
-            'bool_false' => false,
-            'int_true'   => 1,
-            'int_false'  => 0,
-            'int'        => 10,
-            'float'      => 10.3,
-        ],
-    ];
+    private $file = 'tests/file_ini/corruptiniFile.ini';
 
     public function testLoadWithoutCorruptiniFile()
     {
-        $file = 'tests/file_ini/corruptiniFile.ini';
-        chmod($file, 0000);
+        chmod($this->file, 0000);
 
         try {
-            $object = new WriteiniFile($file);
+            $object = new WriteiniFile($this->file);
         } catch (\Exception $e) {
-            return;
+            $error = $e->getMessage();
         }
 
-        $this->fail();
+        $this->assertEquals($error, "Unable to parse file ini : {$this->file}");
     }
 
     public function testWriteInCorruptiniFile()
     {
-        $file = 'tests/file_ini/corruptiniFile.ini';
-        chmod($file, 0644);
+        chmod($this->file, 0644);
 
         try {
-            $object = new WriteiniFile($file);
-            $object->create($this->var);
-            chmod($file, 0000);
+            $object = new WriteiniFile($this->file);
+            $object->create([
+                'section 1' => ['foo' => 'string']
+            ]);
+            chmod($this->file, 0000);
             $object->write();
         } catch (\Exception $e) {
-            return;
+            $error = $e->getMessage();
         }
 
-        $this->fail();
+        $this->assertEquals($error, "Unable to write in the file ini : {$this->file}");
+        chmod($this->file, 0644);
     }
 }
