@@ -8,7 +8,7 @@ namespace WriteiniFile;
 class WriteiniFile
 {
     /**
-     * @var string $path_to_ini_file
+     * @var string
      * @var array  $data_ini_file
      */
     protected $path_to_ini_file;
@@ -135,6 +135,7 @@ class WriteiniFile
                 return (float) $value;
             }
         }
+
         return '"'.$value.'"';
     }
 
