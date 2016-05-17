@@ -2,32 +2,32 @@
 
 use \WriteiniFile\WriteiniFile;
 
-class WriteiniFileTest extends \PHPUnit_Framework_TestCase
+class WriteIniFileTest extends \PHPUnit_Framework_TestCase
 {
     private $var = [
         'section 1' => [
-            'foo' => 'string',
-            'bool_true' => true,
+            'foo'        => 'string',
+            'bool_true'  => true,
             'bool_false' => false,
-            'int_true' => 1,
-            'int_false' => 0,
-            'int' => 10,
-            'float' => 10.3,
-            'foo_array' => [
+            'int_true'   => 1,
+            'int_false'  => 0,
+            'int'        => 10,
+            'float'      => 10.3,
+            'foo_array'  => [
                 'string',
                 10.3,
                 true,
-                false
+                false,
             ],
         ],
         'section 2' => [
-            'foo' => 'string',
-            'var' => 'string string',
+            'foo'              => 'string',
+            'var'              => 'string string',
             'bool_true_string' => 'true',
-            'int_true_string' => '1',
+            'int_true_string'  => '1',
             'int_false_string' => '0',
-            'float_string' => '10.5L'
-        ]
+            'float_string'     => '10.5L',
+        ],
     ];
 
     public function testCreate()
@@ -50,13 +50,12 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
         $object->create($this->var);
         $object->write();
         $object->update([
-            'section 1' => ['foo' => 'bar', 'int' => 100]
+            'section 1' => ['foo' => 'bar', 'int' => 100],
         ]);
         $object->write();
 
         $this->assertFileEquals($expected, $actual);
     }
-
 
     public function testRm()
     {
@@ -67,7 +66,7 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
         $object->create($this->var);
         $object->write();
         $object->rm([
-            'section 1' => ['foo' => 'string', 'int' => 10]
+            'section 1' => ['foo' => 'string', 'int' => 10],
         ]);
         $object->write();
 
@@ -97,7 +96,7 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
         $object->create($this->var);
         $object->write();
         $object->add([
-            'section 3' => ['foo' => 'bar', 'var_float' => 10.5]
+            'section 3' => ['foo' => 'bar', 'var_float' => 10.5],
         ]);
         $object->write();
 
@@ -111,5 +110,4 @@ class WriteiniFileTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFileNotExists($actual);
     }
-
 }

@@ -1,15 +1,15 @@
 <?php
+
 namespace WriteiniFile;
 
 /**
- * Class WriteiniFile
- *
+ * Class WriteiniFile.
  */
 class WriteiniFile
 {
     /**
-     * @var string $path_to_ini_file
-     * @var array $data_ini_file
+     * @var string
+     * @var array  $data_ini_file
      */
     protected $path_to_ini_file;
     protected $data_ini_file;
@@ -56,28 +56,27 @@ class WriteiniFile
 
     /**
      * method for erase ini file.
-     *
      */
     public function erase()
     {
         $this->data_ini_file = [];
     }
 
-    /**
-     * method for add new value in the ini file.
-     *
-     * @param array $add_new_value
-     */
+     /**
+      * method for add new value in the ini file.
+      *
+      * @param array $add_new_value
+      */
      public function add(array $add_new_value)
      {
          $this->data_ini_file = array_merge_recursive($this->data_ini_file, $add_new_value);
      }
 
      /**
-     * method for remove some values in the ini file.
-     *
-     * @param array $add_new_value
-     */
+      * method for remove some values in the ini file.
+      *
+      * @param array $add_new_value
+      */
      public function rm(array $rm_value)
      {
          $this->data_ini_file = self::arrayDiffRecursive($this->data_ini_file, $rm_value);
@@ -93,14 +92,14 @@ class WriteiniFile
         $data_array = $this->data_ini_file;
         $file_content = null;
         foreach ($data_array as $key_1 => $groupe) {
-            $file_content .= "\n[" . $key_1 . "]\n";
+            $file_content .= "\n[".$key_1."]\n";
             foreach ($groupe as $key_2 => $value_2) {
                 if (is_array($value_2)) {
                     foreach ($value_2 as $key_3 => $value_3) {
-                        $file_content .= $key_2 . '[' . $key_3 . '] = ' . self::encode($value_3) . "\n";
+                        $file_content .= $key_2.'['.$key_3.'] = '.self::encode($value_3)."\n";
                     }
                 } else {
-                    $file_content .= $key_2 . ' = ' . self::encode($value_2) . "\n";
+                    $file_content .= $key_2.' = '.self::encode($value_2)."\n";
                 }
             }
         }
@@ -109,6 +108,7 @@ class WriteiniFile
         if (false === $result) {
             throw new \Exception(sprintf('Unable to write in the file ini : %s', $this->path_to_ini_file));
         }
+
         return ($result !== false) ? true : false;
     }
 
@@ -116,6 +116,7 @@ class WriteiniFile
      * method for encode type for ini file.
      *
      * @param mixed $value
+     *
      * @return string
      */
     private static function encode($value)
@@ -134,15 +135,16 @@ class WriteiniFile
                 return (float) $value;
             }
         } // @codeCoverageIgnore
-        return '"' . $value . '"';
+        return '"'.$value.'"';
     }
 
     /**
      * Computes the difference of 2 arrays recursively
-     * source : http://php.net/manual/en/function.array-diff.php#91756
+     * source : http://php.net/manual/en/function.array-diff.php#91756.
      *
      * @param array $array1
      * @param array $array2
+     *
      * @return array
      */
     private static function arrayDiffRecursive(array $array1, array $array2)
@@ -160,6 +162,7 @@ class WriteiniFile
                 $finalArray[$KeyArray1] = $ValueArray1;
             }
         }
+
         return $finalArray;
     }
 }
