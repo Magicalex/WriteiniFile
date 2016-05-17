@@ -6,14 +6,14 @@ class ExceptionTest extends \PHPUnit_Framework_TestCase
 {
     private $var = [
         'section 1' => [
-            'foo' => 'string',
-            'bool_true' => true,
+            'foo'        => 'string',
+            'bool_true'  => true,
             'bool_false' => false,
-            'int_true' => 1,
-            'int_false' => 0,
-            'int' => 10,
-            'float' => 10.3,
-        ]
+            'int_true'   => 1,
+            'int_false'  => 0,
+            'int'        => 10,
+            'float'      => 10.3,
+        ],
     ];
 
     public function testLoadWithoutCorruptiniFile()
