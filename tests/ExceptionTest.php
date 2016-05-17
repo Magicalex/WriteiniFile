@@ -26,7 +26,7 @@ class ExceptionTest extends \PHPUnit_Framework_TestCase
         try {
             $object = new WriteiniFile($this->file);
             $object->create([
-                'section 1' => ['foo' => 'string']
+                'section 1' => ['foo' => 'string'],
             ]);
             chmod($this->file, 0000);
             $object->write();
