@@ -14,7 +14,7 @@ Write-ini-file php library for create, remove, erase, add, and update ini file.
 Use composer for install this library.
 
 ```bash
-$ composer require magicalex/write-ini-file
+$ composer require magicalex/write-ini-file:1.2.*
 ```
 
 ## Usage
