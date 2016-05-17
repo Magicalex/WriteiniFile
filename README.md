@@ -21,9 +21,10 @@ $ composer require magicalex/write-ini-file
 
 ```php
 <?php
+
 require 'vendor/autoload.php';
 
-use \WriteiniFile\WriteiniFile;
+use WriteiniFile\WriteiniFile;
 
 $data = [
     'fruit' => ['orange' => '100g', 'fraise' => '10g'],
@@ -32,48 +33,45 @@ $data = [
 ];
 
 // demo create ini file
-$a = new WriteiniFile('file1.ini');
+$a = new WriteiniFile('file.ini');
 $a->create($data);
+$a->add([
+    'music' => ['rap' => true, 'rock' => false]
+]);
+$a->rm([
+    'jus' => ['pomme' => '1,5L']
+]);
+$a->update([
+    'fruit' => ['orange' => '200g'] // 100g to 200g
+]);
 $a->write();
 
-// create another ini file
-$b = new WriteiniFile('file2.ini');
-$b->create($data);
-$b->write();
+echo '<pre>'.file_get_contents('file.ini').'</pre>';
 
-// demo update a file
-$c = new WriteiniFile('file1.ini');
-$c->update([
-    'fruit' => ['orange' => '200g']
-]);
-$c->write();
-
-// demo remove some values in the ini file
-$d = new WriteiniFile('file2.ini');
-$d->rm([
-    'fruit' => ['orange' => '100g'],
-    'legume' => ['haricot' => '20g'],
-    'jus' => ['orange' => '1L']
-]);
-$d->write();
-```
-
-### output file
-
-ex : file2.ini
-
-```ini
+/* output file.ini
 [fruit]
+orange = "200g"
 fraise = "10g"
 
 [legume]
+haricot = "20g"
 oignon = "100g"
 
 [jus]
-pomme = "1,5L"
+orange = "1L"
 pamplemousse = "0,5L"
-```
 
+[music]
+rap = 1
+rock = 0
+*/
+
+$b = new WriteiniFile('file.ini');
+$b->erase();
+$b->write();
+
+// file.ini -> empty
+```
 
 ## Contributing
 

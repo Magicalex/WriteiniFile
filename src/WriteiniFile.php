@@ -8,7 +8,7 @@ namespace WriteiniFile;
 class WriteiniFile
 {
     /**
-     * @var string
+     * @var string $path_to_ini_file
      * @var array  $data_ini_file
      */
     protected $path_to_ini_file;
@@ -62,25 +62,25 @@ class WriteiniFile
         $this->data_ini_file = [];
     }
 
-     /**
-      * method for add new value in the ini file.
-      *
-      * @param array $add_new_value
-      */
-     public function add(array $add_new_value)
-     {
-         $this->data_ini_file = array_merge_recursive($this->data_ini_file, $add_new_value);
-     }
+    /**
+     * method for add new value in the ini file.
+     *
+     * @param array $add_new_value
+     */
+    public function add(array $add_new_value)
+    {
+        $this->data_ini_file = array_merge_recursive($this->data_ini_file, $add_new_value);
+    }
 
-     /**
-      * method for remove some values in the ini file.
-      *
-      * @param array $add_new_value
-      */
-     public function rm(array $rm_value)
-     {
-         $this->data_ini_file = self::arrayDiffRecursive($this->data_ini_file, $rm_value);
-     }
+    /**
+     * method for remove some values in the ini file.
+     *
+     * @param array $add_new_value
+     */
+    public function rm(array $rm_value)
+    {
+        $this->data_ini_file = self::arrayDiffRecursive($this->data_ini_file, $rm_value);
+    }
 
     /**
      * method for write data in the ini file.
