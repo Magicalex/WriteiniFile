@@ -78,6 +78,7 @@ $b->write();
 To run the unit tests:
 
 ```bash
+$ composer install
 $ php vendor/bin/phpunit
 ```
 
