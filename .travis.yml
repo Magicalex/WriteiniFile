@@ -8,12 +8,10 @@ before_script:
   - composer install
 
 script:
-  - mkdir -p build/logs
   - php vendor/bin/phpunit
-  - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
-  - travis_retry php vendor/bin/coveralls -v
+  - travis_retry php vendor/bin/coveralls --verbose
 
 notifications:
   email: false

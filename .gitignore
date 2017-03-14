@@ -1,6 +1,6 @@
 vendor
 composer.lock
-build
+coverage
 index.php
 
 # test file ini
