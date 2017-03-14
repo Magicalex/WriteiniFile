@@ -1,8 +1,9 @@
 <?php
 
-use \WriteiniFile\WriteiniFile;
+use WriteiniFile\WriteiniFile;
+use PHPUnit\Framework\TestCase;
 
-class WriteIniFileTest extends \PHPUnit_Framework_TestCase
+class WriteIniFileTest extends TestCase
 {
     private $var = [
         'section 1' => [

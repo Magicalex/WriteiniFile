@@ -1,8 +1,9 @@
 <?php
 
-use \WriteiniFile\WriteiniFile;
+use WriteiniFile\WriteiniFile;
+use PHPUnit\Framework\TestCase;
 
-class ExceptionTest extends \PHPUnit_Framework_TestCase
+class ExceptionTest extends TestCase
 {
     private $file = 'tests/file_ini/corruptiniFile.ini';
 

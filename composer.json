@@ -7,8 +7,8 @@
     "homepage": "https://github.com/Magicalex/WriteIniFile",
     "authors": [
         {
-            "name": "magicalex",
-            "email": "magicalex14000@gmail.com"
+            "name": "Magicalex",
+            "email": "magicalex@mondedie.fr"
         }
     ],
     "require": {
@@ -20,7 +20,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "5.3.4",
+        "phpunit/phpunit": "6.0.8",
         "satooshi/php-coveralls": "1.0.1"
     }
 }
