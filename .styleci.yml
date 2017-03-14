@@ -1,0 +1,4 @@
+preset: recommended
+
+disabled:
+  - trailing_comma_in_multiline_array
