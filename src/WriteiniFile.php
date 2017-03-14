@@ -123,10 +123,12 @@ class WriteiniFile
     {
         if ($value == '1' || $value === true) {
             return 1;
-        }
-        if ($value == '' || $value == '0' || $value === false) {
+        } elseif ($value == '0' || $value === false) {
             return 0;
+        } elseif ($value == '') {
+            return '""';
         }
+
         if (is_numeric($value)) {
             $value = $value * 1;
             if (is_int($value)) {
@@ -135,6 +137,7 @@ class WriteiniFile
                 return (float) $value;
             }
         } // @codeCoverageIgnore
+
         return '"'.$value.'"';
     }
 

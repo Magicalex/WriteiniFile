@@ -27,6 +27,7 @@ class WriteIniFileTest extends \PHPUnit_Framework_TestCase
             'int_true_string'  => '1',
             'int_false_string' => '0',
             'float_string'     => '10.5L',
+            'empty_string'     => ''
         ],
     ];
 
