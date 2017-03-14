@@ -9,9 +9,12 @@ class WriteiniFile
 {
     /**
      * @var string $path_to_ini_file
-     * @var array  $data_ini_file
      */
     protected $path_to_ini_file;
+
+    /**
+     * @var array $data_ini_file
+     */
     protected $data_ini_file;
 
     /**
