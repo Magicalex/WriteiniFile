@@ -1,7 +1,7 @@
 <?php
 
-use WriteiniFile\WriteiniFile;
 use PHPUnit\Framework\TestCase;
+use WriteiniFile\WriteiniFile;
 
 class WriteIniFileTest extends TestCase
 {
