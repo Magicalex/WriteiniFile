@@ -27,7 +27,7 @@ class WriteiniFile
         $this->path_to_ini_file = $ini_file;
 
         if (file_exists($ini_file) === true) {
-            $this->data_ini_file = @parse_ini_file($ini_file, true);
+            $this->data_ini_file = @parse_ini_file($ini_file, true, INI_SCANNER_TYPED);
         } else {
             $this->data_ini_file = [];
         }
