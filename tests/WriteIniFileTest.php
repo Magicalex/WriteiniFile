@@ -115,8 +115,8 @@ class WriteIniFileTest extends TestCase
 
     public function testEscapeCharacters()
     {
-    	$actual = 'file_ini/testEscapeCharacters1.ini';
-    	$expected = 'file_ini/testEscapeCharacters2.ini';
+    	$actual = 'tests/file_ini/testEscapeCharacters1.ini';
+    	$expected = 'tests/file_ini/testEscapeCharacters2.ini';
 
     	$object = new WriteiniFile($actual);
     	$object->write();
