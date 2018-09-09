@@ -112,4 +112,14 @@ class WriteIniFileTest extends TestCase
 
         $this->assertFileNotExists($actual);
     }
+
+    public function testEscapeCharacters()
+    {
+        $actual = 'tests/file_ini/testEscapeCharacters1.ini';
+        $expected = 'tests/file_ini/testEscapeCharacters2.ini';
+
+        $object = new WriteiniFile($actual);
+        $object->write();
+        $this->assertFileEquals($expected, $actual);
+    }
 }
