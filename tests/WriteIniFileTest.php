@@ -34,8 +34,8 @@ class WriteIniFileTest extends TestCase
 
     public function testCreate()
     {
-        $writingTest = 'tests/file_ini/testCreate2.ini';
-        $expected = 'tests/file_ini/testCreate1.ini';
+        $writingTest = 'tests/file_ini/Create_test.ini';
+        $expected = 'tests/file_ini/Create.ini';
         $object = new WriteiniFile($writingTest);
         $object->create($this->var);
         $object->write();
@@ -45,8 +45,8 @@ class WriteIniFileTest extends TestCase
 
     public function testUpdate()
     {
-        $writingTest = 'tests/file_ini/testUpdate2.ini';
-        $expected = 'tests/file_ini/testUpdate1.ini';
+        $writingTest = 'tests/file_ini/Update_test.ini';
+        $expected = 'tests/file_ini/Update.ini';
 
         $object = new WriteiniFile($writingTest);
         $object->create($this->var);
@@ -61,8 +61,8 @@ class WriteIniFileTest extends TestCase
 
     public function testRm()
     {
-        $writingTest = 'tests/file_ini/testRm2.ini';
-        $expected = 'tests/file_ini/testRm1.ini';
+        $writingTest = 'tests/file_ini/Rm_test.ini';
+        $expected = 'tests/file_ini/Rm.ini';
 
         $object = new WriteiniFile($writingTest);
         $object->create($this->var);
@@ -77,8 +77,8 @@ class WriteIniFileTest extends TestCase
 
     public function testErase()
     {
-        $writingTest = 'tests/file_ini/testErase2.ini';
-        $expected = 'tests/file_ini/testErase1.ini';
+        $writingTest = 'tests/file_ini/Erase_test.ini';
+        $expected = 'tests/file_ini/Erase.ini';
 
         $object = new WriteiniFile($writingTest);
         $object->create($this->var);
@@ -91,8 +91,8 @@ class WriteIniFileTest extends TestCase
 
     public function testAdd()
     {
-        $writingTest = 'tests/file_ini/testAdd2.ini';
-        $expected = 'tests/file_ini/testAdd1.ini';
+        $writingTest = 'tests/file_ini/Add_test.ini';
+        $expected = 'tests/file_ini/Add.ini';
 
         $object = new WriteiniFile($writingTest);
         $object->create($this->var);
@@ -115,8 +115,8 @@ class WriteIniFileTest extends TestCase
 
     public function testEscapeCharacters()
     {
-        $writingTest = 'tests/file_ini/testEscapeCharacters2.ini';
-        $expected = 'tests/file_ini/testEscapeCharacters1.ini';
+        $writingTest = 'tests/file_ini/EscapeCharacters_test.ini';
+        $expected = 'tests/file_ini/EscapeCharacters.ini';
 
         $object = new WriteiniFile($writingTest);
         $object->create([

@@ -92,21 +92,22 @@ class WriteiniFile
      */
     public function write()
     {
-        $data_array = $this->data_ini_file;
         $file_content = null;
-        foreach ($data_array as $key_1 => $groupe) {
-            $file_content .= "\n[".$key_1."]\n";
+
+        foreach ($this->data_ini_file as $key_1 => $groupe) {
+            $file_content .= PHP_EOL.'['.$key_1.']'.PHP_EOL;
             foreach ($groupe as $key_2 => $value_2) {
                 if (is_array($value_2)) {
                     foreach ($value_2 as $key_3 => $value_3) {
-                        $file_content .= $key_2.'['.$key_3.'] = '.self::encode($value_3)."\n";
+                        $file_content .= $key_2.'['.$key_3.']='.self::encode($value_3).PHP_EOL;
                     }
                 } else {
-                    $file_content .= $key_2.' = '.self::encode($value_2)."\n";
+                    $file_content .= $key_2.'='.self::encode($value_2).PHP_EOL;
                 }
             }
         }
-        $file_content = preg_replace('#^\n#', '', $file_content);
+
+        $file_content = preg_replace('#^'.PHP_EOL.'#', '', $file_content);
         $result = @file_put_contents($this->path_to_ini_file, $file_content);
         if (false === $result) {
             throw new \Exception(sprintf('Unable to write in the file ini : %s', $this->path_to_ini_file));

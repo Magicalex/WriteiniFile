@@ -22,5 +22,11 @@
     "require-dev": {
         "phpunit/phpunit": "5.7.*",
         "php-coveralls/php-coveralls": "2.1.0"
+    },
+    "scripts": {
+        "test": [
+            "rm tests/file_ini/*_test.ini",
+            "php vendor/bin/phpunit"
+        ]
     }
 }

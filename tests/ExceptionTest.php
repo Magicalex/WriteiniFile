@@ -5,7 +5,7 @@ use WriteiniFile\WriteiniFile;
 
 class ExceptionTest extends TestCase
 {
-    private $file = 'tests/file_ini/corruptiniFile.ini';
+    private $file = 'tests/file_ini/CorruptiniFile.ini';
 
     public function testLoadWithoutCorruptiniFile()
     {
