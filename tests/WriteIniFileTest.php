@@ -1,8 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use WriteiniFile\WriteiniFile;
 use WriteiniFile\ReadiniFile;
+use WriteiniFile\WriteiniFile;
 
 class WriteIniFileTest extends TestCase
 {

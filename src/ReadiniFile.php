@@ -3,7 +3,7 @@
 namespace WriteiniFile;
 
 /**
- * Class ReadiniFile
+ * Class ReadiniFile.
  */
 class ReadiniFile
 {
@@ -18,10 +18,10 @@ class ReadiniFile
     protected static $data_ini_file;
 
     /**
-     * method for get data of ini file
+     * method for get data of ini file.
      *
-     * @param string $ini_file path of ini file
-     * @param int $scanner_mode scanner mode INI_SCANNER_RAW INI_SCANNER_TYPED or INI_SCANNER_NORMAL
+     * @param string $ini_file     path of ini file
+     * @param int    $scanner_mode scanner mode INI_SCANNER_RAW INI_SCANNER_TYPED or INI_SCANNER_NORMAL
      *
      * @return array ini file data in a array
      */

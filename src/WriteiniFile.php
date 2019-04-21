@@ -21,7 +21,7 @@ class WriteiniFile
      * Constructor.
      *
      * @param string $ini_file
-     * @param int $scanner_mode scanner mode INI_SCANNER_RAW, INI_SCANNER_TYPED or INI_SCANNER_NORMAL
+     * @param int    $scanner_mode scanner mode INI_SCANNER_RAW, INI_SCANNER_TYPED or INI_SCANNER_NORMAL
      */
     public function __construct($ini_file, $scanner_mode = INI_SCANNER_RAW)
     {
@@ -124,7 +124,7 @@ class WriteiniFile
             throw new \Exception(sprintf('Unable to write in the file ini: %s', $this->path_to_ini_file));
         }
 
-        return ($result !== false) ? true:false;
+        return ($result !== false) ? true : false;
     }
 
     /**
