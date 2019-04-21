@@ -38,9 +38,7 @@ class WriteiniFileTest extends TestCase
 
     public function testCreate()
     {
-        (new WriteiniFile('tests/file_ini/Create_test.ini'))
-            ->create($this->var)
-            ->write();
+        (new WriteiniFile('tests/file_ini/Create_test.ini'))->create($this->var)->write();
 
         $this->assertFileEquals('tests/file_ini/Create.ini', 'tests/file_ini/Create_test.ini');
     }
@@ -67,13 +65,8 @@ class WriteiniFileTest extends TestCase
 
     public function testErase()
     {
-        (new WriteiniFile('tests/file_ini/Erase_test.ini'))
-            ->create($this->var)
-            ->write();
-
-        (new WriteiniFile('tests/file_ini/Erase_test.ini'))
-            ->erase()
-            ->write();
+        (new WriteiniFile('tests/file_ini/Erase_test.ini'))->create($this->var)->write();
+        (new WriteiniFile('tests/file_ini/Erase_test.ini'))->erase()->write();
 
         $this->assertFileEquals('tests/file_ini/Erase.ini', 'tests/file_ini/Erase_test.ini');
     }
