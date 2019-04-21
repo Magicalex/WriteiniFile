@@ -7,15 +7,13 @@ Write-ini-file php library for create, remove, erase, add, and update ini file.
 [![StyleCI](https://styleci.io/repos/36994392/shield?branch=master)](https://styleci.io/repos/36994392)
 [![Latest Stable Version](https://poser.pugx.org/magicalex/write-ini-file/v/stable)](https://packagist.org/packages/magicalex/write-ini-file)
 [![Total Downloads](https://poser.pugx.org/magicalex/write-ini-file/downloads)](https://packagist.org/packages/magicalex/write-ini-file)
-[![Latest Unstable Version](https://poser.pugx.org/magicalex/write-ini-file/v/unstable)](https://packagist.org/packages/magicalex/write-ini-file)
  [![License](https://poser.pugx.org/magicalex/write-ini-file/license)](https://packagist.org/packages/magicalex/write-ini-file)
 
 ## Installation
 
-Use composer for install this library.
-
+Use composer for install magicalex/write-ini-file.
 ```bash
-$ composer require magicalex/write-ini-file:1.2.*
+composer require magicalex/write-ini-file
 ```
 
 ## Usage
@@ -35,16 +33,15 @@ $data = [
 ];
 
 // demo create ini file
-$file_a = new WriteiniFile('file_a.ini');
-$file_a
+$file = new WriteiniFile('file.ini');
+$file
     ->create($data)
     ->add(['music' => ['rap' => true, 'rock' => false]])
     ->rm(['jus' => ['pomme' => '1,5L']])
     ->update(['fruit' => ['orange' => '200g']])
     ->write();
 
-echo '<pre>'.file_get_contents('file_a.ini').'</pre>';
-
+echo '<pre>'.file_get_contents('file.ini').'</pre>';
 /* output file_a.ini
 [fruit]
 orange=200g
@@ -63,13 +60,8 @@ rap=true
 rock=false
 */
 
-$file_b = (new WriteiniFile('file_b.ini'))->erase()->write();
-
-// file.ini -> empty
-
 // Just read a file ini
-var_dump(ReadiniFile::data('file_a.ini'));
-
+var_dump(ReadiniFile::data('file.ini'));
 /* output
 array(4) {
   'fruit' =>
@@ -103,6 +95,8 @@ array(4) {
 }
 */
 
+$erase = (new WriteiniFile('file.ini'))->erase()->write();
+// file.ini -> empty
 ```
 
 ## Contributing
@@ -116,4 +110,4 @@ php vendor/bin/phpunit # or composer run-script test
 
 ## License
 
-The WriteiniFile php library is released under the [GNU General Public License v3.0](https://github.com/Magicalex/WriteiniFile/blob/master/LICENSE)
+WriteiniFile is released under the [GNU General Public License v3.0](https://github.com/Magicalex/WriteiniFile/blob/master/LICENSE)
