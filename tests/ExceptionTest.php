@@ -17,7 +17,7 @@ class ExceptionTest extends TestCase
             $error = $e->getMessage();
         }
 
-        $this->assertEquals($error, "Unable to parse file ini : {$this->file}");
+        $this->assertEquals($error, "Unable to parse file ini: {$this->file}");
     }
 
     public function testWriteInCorruptiniFile()
@@ -35,7 +35,7 @@ class ExceptionTest extends TestCase
             $error = $e->getMessage();
         }
 
-        $this->assertEquals($error, "Unable to write in the file ini : {$this->file}");
+        $this->assertEquals($error, "Unable to write in the file ini: {$this->file}");
         chmod($this->file, 0644);
     }
 }

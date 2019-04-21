@@ -21,19 +21,20 @@ class WriteiniFile
      * Constructor.
      *
      * @param string $ini_file
+     * @param int $scanner_mode scanner mode INI_SCANNER_RAW, INI_SCANNER_TYPED or INI_SCANNER_NORMAL
      */
-    public function __construct($ini_file)
+    public function __construct($ini_file, $scanner_mode = INI_SCANNER_RAW)
     {
         $this->path_to_ini_file = $ini_file;
 
-        if (file_exists($ini_file) === true) {
-            $this->data_ini_file = @parse_ini_file($ini_file, true, INI_SCANNER_TYPED);
+        if (file_exists($this->path_to_ini_file) === true) {
+            $this->data_ini_file = @parse_ini_file($this->path_to_ini_file, true, $scanner_mode);
         } else {
             $this->data_ini_file = [];
         }
 
-        if (false === $this->data_ini_file) {
-            throw new \Exception(sprintf('Unable to parse file ini : %s', $this->path_to_ini_file));
+        if ($this->data_ini_file === false) {
+            throw new \Exception(sprintf('Unable to parse file ini: %s', $this->path_to_ini_file));
         }
     }
 
@@ -45,6 +46,8 @@ class WriteiniFile
     public function update(array $new_value)
     {
         $this->data_ini_file = array_replace_recursive($this->data_ini_file, $new_value);
+
+        return $this;
     }
 
     /**
@@ -55,6 +58,8 @@ class WriteiniFile
     public function create(array $new_ini_file)
     {
         $this->data_ini_file = $new_ini_file;
+
+        return $this;
     }
 
     /**
@@ -63,6 +68,8 @@ class WriteiniFile
     public function erase()
     {
         $this->data_ini_file = [];
+
+        return $this;
     }
 
     /**
@@ -73,6 +80,8 @@ class WriteiniFile
     public function add(array $add_new_value)
     {
         $this->data_ini_file = array_merge_recursive($this->data_ini_file, $add_new_value);
+
+        return $this;
     }
 
     /**
@@ -83,6 +92,8 @@ class WriteiniFile
     public function rm(array $rm_value)
     {
         $this->data_ini_file = self::arrayDiffRecursive($this->data_ini_file, $rm_value);
+
+        return $this;
     }
 
     /**
@@ -110,10 +121,10 @@ class WriteiniFile
         $file_content = preg_replace('#^'.PHP_EOL.'#', '', $file_content);
         $result = @file_put_contents($this->path_to_ini_file, $file_content);
         if (false === $result) {
-            throw new \Exception(sprintf('Unable to write in the file ini : %s', $this->path_to_ini_file));
+            throw new \Exception(sprintf('Unable to write in the file ini: %s', $this->path_to_ini_file));
         }
 
-        return ($result !== false) ? true : false;
+        return ($result !== false) ? true:false;
     }
 
     /**
@@ -125,24 +136,19 @@ class WriteiniFile
      */
     private static function encode($value)
     {
-        if ($value == '1' || $value === true) {
-            return 1;
-        } elseif ($value == '0' || $value === false) {
-            return 0;
-        } elseif ($value == '') {
-            return '""';
+        if ($value === true) {
+            return 'true';
         }
 
-        if (is_numeric($value)) {
-            $value = $value * 1;
-            if (is_int($value)) {
-                return (int) $value;
-            } elseif (is_float($value)) {
-                return (float) $value;
-            }
-        } // @codeCoverageIgnore
+        if ($value === false) {
+            return 'false';
+        }
 
-        return '"'.str_replace('"', '\"', $value).'"';
+        if ($value === null) {
+            return 'null';
+        }
+
+        return $value;
     }
 
     /**

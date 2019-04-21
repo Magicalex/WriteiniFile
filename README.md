@@ -23,9 +23,10 @@ $ composer require magicalex/write-ini-file:1.2.*
 ```php
 <?php
 
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use WriteiniFile\WriteiniFile;
+use WriteiniFile\ReadiniFile;
 
 $data = [
     'fruit' => ['orange' => '100g', 'fraise' => '10g'],
@@ -34,44 +35,74 @@ $data = [
 ];
 
 // demo create ini file
-$a = new WriteiniFile('file.ini');
-$a->create($data);
-$a->add([
-    'music' => ['rap' => true, 'rock' => false]
-]);
-$a->rm([
-    'jus' => ['pomme' => '1,5L']
-]);
-$a->update([
-    'fruit' => ['orange' => '200g'] // 100g to 200g
-]);
-$a->write();
+$file_a = new WriteiniFile('file_a.ini');
+$file_a
+    ->create($data)
+    ->add(['music' => ['rap' => true, 'rock' => false]])
+    ->rm(['jus' => ['pomme' => '1,5L']])
+    ->update(['fruit' => ['orange' => '200g']])
+    ->write();
 
-echo '<pre>'.file_get_contents('file.ini').'</pre>';
+echo '<pre>'.file_get_contents('file_a.ini').'</pre>';
 
-/* output file.ini
+/* output file_a.ini
 [fruit]
-orange = "200g"
-fraise = "10g"
+orange=200g
+fraise=10g
 
 [legume]
-haricot = "20g"
-oignon = "100g"
+haricot=20g
+oignon=100g
 
 [jus]
-orange = "1L"
-pamplemousse = "0,5L"
+orange=1L
+pamplemousse=0,5L
 
 [music]
-rap = 1
-rock = 0
+rap=true
+rock=false
 */
 
-$b = new WriteiniFile('file.ini');
-$b->erase();
-$b->write();
+$file_b = (new WriteiniFile('file_b.ini'))->erase()->write();
 
 // file.ini -> empty
+
+// Just read a file ini
+var_dump(ReadiniFile::data('file_a.ini'));
+
+/* output
+array(4) {
+  'fruit' =>
+  array(2) {
+    'orange' =>
+    string(4) "200g"
+    'fraise' =>
+    string(3) "10g"
+  }
+  'legume' =>
+  array(2) {
+    'haricot' =>
+    string(3) "20g"
+    'oignon' =>
+    string(4) "100g"
+  }
+  'jus' =>
+  array(2) {
+    'orange' =>
+    string(2) "1L"
+    'pamplemousse' =>
+    string(4) "0,5L"
+  }
+  'music' =>
+  array(2) {
+    'rap' =>
+    string(4) "true"
+    'rock' =>
+    string(5) "false"
+  }
+}
+*/
+
 ```
 
 ## Contributing
@@ -79,12 +110,10 @@ $b->write();
 To run the unit tests:
 
 ```bash
-$ composer install
-$ php vendor/bin/phpunit
+composer install
+php vendor/bin/phpunit # or composer run-script test
 ```
 
 ## License
 
-The WriteiniFile php library is released under the GNU General Public License v3.0.
-
-https://github.com/Magicalex/WriteiniFile/blob/master/LICENSE.md
+The WriteiniFile php library is released under the [GNU General Public License v3.0](https://github.com/Magicalex/WriteiniFile/blob/master/LICENSE)
