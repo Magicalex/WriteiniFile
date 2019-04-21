@@ -7,35 +7,29 @@ class ExceptionTest extends TestCase
 {
     private $file = 'tests/file_ini/CorruptiniFile.ini';
 
-    public function testLoadWithoutCorruptiniFile()
+    public function testParseWithCorruptiniFile()
     {
-        chmod($this->file, 0000);
-
         try {
-            $object = new WriteiniFile($this->file);
-        } catch (\Exception $e) {
-            $error = $e->getMessage();
+            chmod($this->file, 0000);
+            (new WriteiniFile($this->file));
+            chmod($this->file, 0644);
+        } catch (\Exception $error) {
         }
 
-        $this->assertEquals($error, "Unable to parse file ini: {$this->file}");
+        $this->assertEquals("Unable to parse file ini: {$this->file}", $error->getMessage());
     }
 
-    public function testWriteInCorruptiniFile()
+    public function testWriteinCorruptiniFile()
     {
-        chmod($this->file, 0644);
-
         try {
-            $object = new WriteiniFile($this->file);
-            $object->create([
-                'section 1' => ['foo' => 'string']
-            ]);
+            chmod($this->file, 0644);
+            $test = (new WriteiniFile($this->file))->create(['section 1' => ['foo' => 'string']]);
             chmod($this->file, 0000);
-            $object->write();
-        } catch (\Exception $e) {
-            $error = $e->getMessage();
+            $test->write();
+            chmod($this->file, 0644);
+        } catch (\Exception $error) {
         }
 
-        $this->assertEquals($error, "Unable to write in the file ini: {$this->file}");
-        chmod($this->file, 0644);
+        $this->assertEquals("Unable to write in the file ini: {$this->file}", $error->getMessage());
     }
 }

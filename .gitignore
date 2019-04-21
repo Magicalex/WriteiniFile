@@ -1,8 +1,4 @@
 vendor
 composer.lock
 coverage
-index.php
-
-# test file ini
-file.ini
 tests/file_ini/*_test.ini

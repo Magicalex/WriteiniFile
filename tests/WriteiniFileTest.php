@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 use WriteiniFile\ReadiniFile;
 use WriteiniFile\WriteiniFile;
 
-class WriteIniFileTest extends TestCase
+class WriteiniFileTest extends TestCase
 {
     private $var = [
         'section 1' => [
