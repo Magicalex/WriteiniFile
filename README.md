@@ -3,8 +3,8 @@
 Write-ini-file php library for create, remove, erase, add, and update ini file.
 
 [![Build Status](https://travis-ci.org/Magicalex/WriteiniFile.svg)](https://travis-ci.org/Magicalex/WriteiniFile)
-[![Coverage Status](https://coveralls.io/repos/github/Magicalex/WriteiniFile/badge.svg?branch=master)](https://coveralls.io/github/Magicalex/WriteiniFile?branch=master)
-[![StyleCI](https://styleci.io/repos/36994392/shield?branch=master)](https://styleci.io/repos/36994392)
+[![Coverage Status](https://coveralls.io/repos/github/Magicalex/WriteiniFile/badge.svg)](https://coveralls.io/github/Magicalex/WriteiniFile)
+[![StyleCI](https://styleci.io/repos/36994392/shield)](https://styleci.io/repos/36994392)
 [![Latest Stable Version](https://poser.pugx.org/magicalex/write-ini-file/v/stable)](https://packagist.org/packages/magicalex/write-ini-file)
 [![Total Downloads](https://poser.pugx.org/magicalex/write-ini-file/downloads)](https://packagist.org/packages/magicalex/write-ini-file)
  [![License](https://poser.pugx.org/magicalex/write-ini-file/license)](https://packagist.org/packages/magicalex/write-ini-file)
@@ -23,8 +23,8 @@ composer require magicalex/write-ini-file
 
 require_once 'vendor/autoload.php';
 
-use WriteiniFile\WriteiniFile;
-use WriteiniFile\ReadiniFile;
+use \WriteiniFile\WriteiniFile;
+use \WriteiniFile\ReadiniFile;
 
 $data = [
     'fruit' => ['orange' => '100g', 'fraise' => '10g'],
@@ -42,7 +42,7 @@ $file
     ->write();
 
 echo '<pre>'.file_get_contents('file.ini').'</pre>';
-/* output file_a.ini
+/* output file.ini
 [fruit]
 orange=200g
 fraise=10g
@@ -61,36 +61,24 @@ rock=false
 */
 
 // Just read a file ini
-var_dump(ReadiniFile::data('file.ini'));
+var_dump(ReadiniFile::get('file.ini'));
 /* output
 array(4) {
-  'fruit' =>
-  array(2) {
-    'orange' =>
-    string(4) "200g"
-    'fraise' =>
-    string(3) "10g"
+  'fruit' => array(2) {
+    'orange' => string(4) "200g"
+    'fraise' => string(3) "10g"
   }
-  'legume' =>
-  array(2) {
-    'haricot' =>
-    string(3) "20g"
-    'oignon' =>
-    string(4) "100g"
+  'legume' => array(2) {
+    'haricot' => string(3) "20g"
+    'oignon' => string(4) "100g"
   }
-  'jus' =>
-  array(2) {
-    'orange' =>
-    string(2) "1L"
-    'pamplemousse' =>
-    string(4) "0,5L"
+  'jus' => array(2) {
+    'orange' => string(2) "1L"
+    'pamplemousse' => string(4) "0,5L"
   }
-  'music' =>
-  array(2) {
-    'rap' =>
-    string(4) "true"
-    'rock' =>
-    string(5) "false"
+  'music' => array(2) {
+    'rap' => string(4) "true"
+    'rock' => string(5) "false"
   }
 }
 */
@@ -102,10 +90,9 @@ $erase = (new WriteiniFile('file.ini'))->erase()->write();
 ## Contributing
 
 To run the unit tests:
-
 ```bash
 composer install
-php vendor/bin/phpunit # or composer run-script test
+php vendor/bin/phpunit # or use: composer run-script test
 ```
 
 ## License

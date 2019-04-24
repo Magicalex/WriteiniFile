@@ -98,9 +98,35 @@ class WriteiniFileTest extends TestCase
     public function testUnchangeData()
     {
         (new WriteiniFile('tests/file_ini/UnchangeData_test.ini'))
-            ->create(ReadiniFile::data('tests/file_ini/UnchangeData.ini'))
+            ->create(ReadiniFile::get('tests/file_ini/UnchangeData.ini'))
             ->write();
 
         $this->assertFileEquals('tests/file_ini/UnchangeData.ini', 'tests/file_ini/UnchangeData_test.ini');
+    }
+
+    public function testParseWithCorruptiniFile()
+    {
+        try {
+            chmod('tests/file_ini/CorruptiniFile.ini', 0000);
+            (new WriteiniFile('tests/file_ini/CorruptiniFile.ini'));
+            chmod('tests/file_ini/CorruptiniFile.ini', 0644);
+        } catch (\Exception $error) {
+        }
+
+        $this->assertEquals('Unable to parse file ini: tests/file_ini/CorruptiniFile.ini', $error->getMessage());
+    }
+
+    public function testWriteinCorruptiniFile()
+    {
+        try {
+            chmod('tests/file_ini/CorruptiniFile.ini', 0644);
+            $test = (new WriteiniFile('tests/file_ini/CorruptiniFile.ini'))->create(['section 1' => ['foo' => 'string']]);
+            chmod('tests/file_ini/CorruptiniFile.ini', 0000);
+            $test->write();
+            chmod('tests/file_ini/CorruptiniFile.ini', 0644);
+        } catch (\Exception $error) {
+        }
+
+        $this->assertEquals('Unable to write in the file ini: tests/file_ini/CorruptiniFile.ini', $error->getMessage());
     }
 }

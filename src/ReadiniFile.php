@@ -25,7 +25,7 @@ class ReadiniFile
      *
      * @return array ini file data in a array
      */
-    public static function data($ini_file, $scanner_mode = INI_SCANNER_RAW)
+    public static function get($ini_file, $scanner_mode = INI_SCANNER_RAW)
     {
         self::$path_to_ini_file = $ini_file;
 

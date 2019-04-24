@@ -42,6 +42,8 @@ class WriteiniFile
      * method for change value in the ini file.
      *
      * @param array $new_value
+     *
+     * @return $this
      */
     public function update(array $new_value)
     {
@@ -54,6 +56,8 @@ class WriteiniFile
      * method for create ini file.
      *
      * @param array $new_ini_file
+     *
+     * @return $this
      */
     public function create(array $new_ini_file)
     {
@@ -64,6 +68,8 @@ class WriteiniFile
 
     /**
      * method for erase ini file.
+     *
+     * @return $this
      */
     public function erase()
     {
@@ -76,6 +82,8 @@ class WriteiniFile
      * method for add new value in the ini file.
      *
      * @param array $add_new_value
+     *
+     * @return $this
      */
     public function add(array $add_new_value)
     {
@@ -87,7 +95,9 @@ class WriteiniFile
     /**
      * method for remove some values in the ini file.
      *
-     * @param array $add_new_value
+     * @param array $rm_value
+     *
+     * @return $this
      */
     public function rm(array $rm_value)
     {
@@ -99,7 +109,7 @@ class WriteiniFile
     /**
      * method for write data in the ini file.
      *
-     * @return bool true for a succes
+     * @return bool
      */
     public function write()
     {

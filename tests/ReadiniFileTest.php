@@ -8,7 +8,7 @@ class ReadiniFileTest extends TestCase
     public function testFileiniDoesnotExist()
     {
         try {
-            ReadiniFile::data('tests/file_ini/fileDoesnotExist.ini');
+            ReadiniFile::get('tests/file_ini/fileDoesnotExist.ini');
         } catch (\Exception $error) {
         }
 
@@ -19,7 +19,7 @@ class ReadiniFileTest extends TestCase
     {
         try {
             chmod('tests/file_ini/CorruptiniFile.ini', 0000);
-            ReadiniFile::data('tests/file_ini/CorruptiniFile.ini');
+            ReadiniFile::get('tests/file_ini/CorruptiniFile.ini');
             chmod('tests/file_ini/CorruptiniFile.ini', 0644);
         } catch (\Exception $error) {
         }
