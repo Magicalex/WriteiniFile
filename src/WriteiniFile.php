@@ -177,7 +177,7 @@ class WriteiniFile
             return 'null';
         }
 
-        return $value;
+        return '"' . $value . '"';
     }
 
     /**
