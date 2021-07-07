@@ -18,17 +18,24 @@ class WriteiniFile
     protected $data_ini_file;
 
     /**
+     * @var bool $process_sections
+     */
+    protected $process_sections;
+
+    /**
      * Constructor.
      *
      * @param string $ini_file
+     * @param bool   $process_sections By setting the process_sections parameter to true, you get a multidimensional array, with the section names and settings included. Defaults to true.
      * @param int    $scanner_mode scanner mode INI_SCANNER_RAW, INI_SCANNER_TYPED or INI_SCANNER_NORMAL
      */
-    public function __construct($ini_file, $scanner_mode = INI_SCANNER_RAW)
+    public function __construct($ini_file, $process_sections = true, $scanner_mode = INI_SCANNER_RAW)
     {
         $this->path_to_ini_file = $ini_file;
+        $this->process_sections = $process_sections;
 
         if (file_exists($this->path_to_ini_file) === true) {
-            $this->data_ini_file = @parse_ini_file($this->path_to_ini_file, true, $scanner_mode);
+            $this->data_ini_file = @parse_ini_file($this->path_to_ini_file, $process_sections, $scanner_mode);
         } else {
             $this->data_ini_file = [];
         }
@@ -115,15 +122,27 @@ class WriteiniFile
     {
         $file_content = null;
 
-        foreach ($this->data_ini_file as $key_1 => $groupe) {
-            $file_content .= PHP_EOL.'['.$key_1.']'.PHP_EOL;
-            foreach ($groupe as $key_2 => $value_2) {
-                if (is_array($value_2)) {
-                    foreach ($value_2 as $key_3 => $value_3) {
-                        $file_content .= $key_2.'['.$key_3.']='.self::encode($value_3).PHP_EOL;
+        if ($this->process_sections) {
+            foreach ($this->data_ini_file as $key_1 => $groupe) {
+                $file_content .= PHP_EOL . '[' . $key_1 . ']' . PHP_EOL;
+                foreach ($groupe as $key_2 => $value_2) {
+                    if (is_array($value_2)) {
+                        foreach ($value_2 as $key_3 => $value_3) {
+                            $file_content .= $key_2 . '[' . $key_3 . ']=' . self::encode($value_3) . PHP_EOL;
+                        }
+                    } else {
+                        $file_content .= $key_2 . '=' . self::encode($value_2) . PHP_EOL;
+                    }
+                }
+            }
+        } else {
+            foreach ($this->data_ini_file as $key => $value) {
+                if (is_array($value)) {
+                    foreach ($value as $key_2 => $value_2) {
+                        $file_content .= $key . '[' . $key_2 . ']=' . self::encode($value_2) . PHP_EOL;
                     }
                 } else {
-                    $file_content .= $key_2.'='.self::encode($value_2).PHP_EOL;
+                    $file_content .= $key . '=' . self::encode($value) . PHP_EOL;
                 }
             }
         }
@@ -134,7 +153,7 @@ class WriteiniFile
             throw new \Exception(sprintf('Unable to write in the file ini: %s', $this->path_to_ini_file));
         }
 
-        return ($result !== false) ? true : false;
+        return $result !== false;
     }
 
     /**
@@ -158,7 +177,7 @@ class WriteiniFile
             return 'null';
         }
 
-        return $value;
+        return '"' . $value . '"';
     }
 
     /**
